@@ -1,17 +1,4 @@
 import CONFIG from '../../globals/config';
-import 'lazysizes';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
-
-const START = 10;
-const NUMBER_OF_IMAGES = 100;
-
-// menggunakan teknik lazyload pada daftar gambar restoran
-const generateImage = (restaurants) => {
-  // eslint-disable-next-line no-plusplus
-  for (let i = START; i < START + NUMBER_OF_IMAGES; i++) {
-    document.body.innerHTML += `<img class="movie-item__header__poster" alt="${restaurants.name}" src="${CONFIG.BASE_IMAGE_URL}${restaurants.pictureId}" crossorigin="anonymous">`;
-  }
-};
 
 // mengambil menu
 const allMenu = (menus) => {
@@ -90,7 +77,8 @@ const createMovieDetailTemplate = (restaurant) => `
 const createMovieItemTemplate = (restaurants) => `
 <div class="movie-item">
 <div class="movie-item__header">
-  ${generateImage(restaurants)}
+<img class="movie-item__header__poster lazyload" alt="${restaurants.name}"
+src="${CONFIG.BASE_IMAGE_URL}${restaurants.pictureId}" crossorigin="anonymous">
   <div class="movie-item__header__rating">
     <p>⭐️<span class="movie-item__header__rating__score">${restaurants.rating}</span></p>
   </div>
